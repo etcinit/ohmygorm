@@ -38,7 +38,7 @@ func (c *ConnectionsService) Make() (*gorm.DB, error) {
 		break
 	case "mysql":
 		uri := fmt.Sprintf(
-			"%s:%s@%s:%d/%s?charset=utf8&parseTime=True&loc=Local",
+			"%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
 			config["username"],
 			config["password"],
 			config["host"],
