@@ -2,6 +2,8 @@
 
 Some setup helpers for [Gorm](https://github.com/jinzhu/gorm) using [Confer](https://github.com/jacobstr/confer)
 
+[![GoDoc](https://godoc.org/github.com/etcinit/ohmygorm?status.svg)](https://godoc.org/github.com/etcinit/ohmygorm)
+
 [![wercker status](https://app.wercker.com/status/f6e8411f910bebbf61daec4e5234db19/m "wercker status")](https://app.wercker.com/project/bykey/f6e8411f910bebbf61daec4e5234db19)
 
 ## Now featuring™:
