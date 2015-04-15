@@ -4,9 +4,11 @@ import (
 	"testing"
 
 	"github.com/jacobstr/confer"
+	"github.com/stretchr/testify/assert"
 )
 
 type Example struct {
+	ID        int
 	FirstName string
 	LastName  string
 }
@@ -26,4 +28,14 @@ func Test_Run(t *testing.T) {
 	}
 
 	migrator.Run([]interface{}{&Example{}})
+
+	db, _ := connections.Make()
+
+	bobby := Example{FirstName: "Bobby", LastName: "Tables"}
+
+	assert.Equal(t, 0, bobby.ID)
+
+	db.Create(&bobby)
+
+	assert.NotEqual(t, 0, bobby.ID)
 }
