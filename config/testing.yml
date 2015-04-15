@@ -1,0 +1,5 @@
+# Example configuration for testing
+database:
+  driver: "sqlite"
+  file: ":memory:"
+  alwaysMigrate: true

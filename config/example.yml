@@ -1,0 +1,12 @@
+# Example configuration
+database:
+  # Speficy which driver to use (sqlite or mysql)
+  driver: "mysql"
+  # Host
+  host: "127.0.0.0"
+  # Database username
+  username: "blag"
+  # Database password
+  password: "pl41nt3xt"
+  # Name of the database
+  name: "cms"
