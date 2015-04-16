@@ -1,5 +1,7 @@
 package ohmygorm
 
+import "github.com/jinzhu/gorm"
+
 // RepositoryService provides function for building structures following the
 // repository pattern.
 type RepositoryService struct {
@@ -29,6 +31,15 @@ func (r *RepositoryService) Find(model interface{}, id int) error {
 	}
 
 	db.Where("id = ?", id).Find(model)
+
+	return nil
+}
+
+// FirstOrFail is a shortcut for using First and checking for the RecordNotFound error
+func (r *RepositoryService) FirstOrFail(model interface{}, query *gorm.DB) error {
+	if query.First(model).RecordNotFound() {
+		return gorm.RecordNotFound
+	}
 
 	return nil
 }
