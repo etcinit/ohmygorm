@@ -12,6 +12,7 @@ Some setup helpers for [Gorm](https://github.com/jinzhu/gorm) using [Confer](htt
 - Designed for one connection per app (for now)
 - MySQL and SQLite drivers
 - Built-in support for `facebookgo/inject`
+- Some helpers for building structs with the Repository Pattern
 
 ## Maybe one day:
 
