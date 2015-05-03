@@ -30,15 +30,17 @@ func (r *RepositoryService) Find(model interface{}, id int) error {
 		return err
 	}
 
-	db.Where("id = ?", id).Find(model)
+	if err := db.Where("id = ?", id).Find(model).Error; err != nil {
+		return err
+	}
 
 	return nil
 }
 
 // FirstOrFail is a shortcut for using First and checking for the RecordNotFound error
 func (r *RepositoryService) FirstOrFail(model interface{}, query *gorm.DB) error {
-	if query.First(model).RecordNotFound() {
-		return gorm.RecordNotFound
+	if err := query.First(model).Error; err != nil {
+		return err
 	}
 
 	return nil
