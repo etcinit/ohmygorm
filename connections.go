@@ -6,6 +6,7 @@ import (
 
 	"github.com/jacobstr/confer"
 	"github.com/jinzhu/gorm"
+	"github.com/kr/pretty"
 
 	// Load database drivers for Gorm
 	_ "github.com/go-sql-driver/mysql"
@@ -34,6 +35,7 @@ func (c *ConnectionsService) Make() (*gorm.DB, error) {
 		db, err = gorm.Open("sqlite3", c.Config.GetString("database.file"))
 		break
 	case "mysql":
+		pretty.Println(c.Config.GetString("database.host"))
 		uri := fmt.Sprintf(
 			"%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
 			c.Config.GetString("database.username"),
