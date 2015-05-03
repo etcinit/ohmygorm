@@ -6,7 +6,6 @@ import (
 
 	"github.com/jacobstr/confer"
 	"github.com/jinzhu/gorm"
-	"github.com/kr/pretty"
 
 	// Load database drivers for Gorm
 	_ "github.com/go-sql-driver/mysql"
@@ -29,24 +28,19 @@ func (c *ConnectionsService) Make() (*gorm.DB, error) {
 	var db gorm.DB
 	var err error
 
-	// Fetch configuration
-	config := c.Config.GetStringMapString("database")
-
-	pretty.Println(config)
-
 	// Setup Gorm with the specified driver
-	switch config["driver"] {
+	switch c.Config.GetString("database.driver") {
 	case "sqlite":
-		db, err = gorm.Open("sqlite3", config["file"])
+		db, err = gorm.Open("sqlite3", c.Config.GetString("database.file"))
 		break
 	case "mysql":
 		uri := fmt.Sprintf(
 			"%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local",
-			config["username"],
-			config["password"],
-			config["host"],
+			c.Config.GetString("database.username"),
+			c.Config.GetString("database.password"),
+			c.Config.GetString("database.host"),
 			c.Config.GetInt("database.port"),
-			config["name"],
+			c.Config.GetString("database.name"),
 		)
 
 		db, err = gorm.Open("mysql", uri)
