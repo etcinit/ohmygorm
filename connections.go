@@ -6,6 +6,7 @@ import (
 
 	"github.com/jacobstr/confer"
 	"github.com/jinzhu/gorm"
+	"github.com/kr/pretty"
 
 	// Load database drivers for Gorm
 	_ "github.com/go-sql-driver/mysql"
@@ -30,6 +31,8 @@ func (c *ConnectionsService) Make() (*gorm.DB, error) {
 
 	// Fetch configuration
 	config := c.Config.GetStringMapString("database")
+
+	pretty.Println(config)
 
 	// Setup Gorm with the specified driver
 	switch config["driver"] {
